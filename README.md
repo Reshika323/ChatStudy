@@ -43,6 +43,16 @@ Client-server chat applications are software systems that enable real-time commu
 ## Architecture:
 ## Client-Server Model:
 Client-server chat applications typically follow the client-server model, where one entity acts as the server, managing connections and facilitating communication, and one or more entities act as clients, initiating communication with the server.
+```
+import socket
+
+s = socket.socket()
+s.connect(('localhost', 6000))  
+s.send(b"Hello from client!")
+data = s.recv(1024).decode()
+print("Server says:", data)
+s.close()
+```
 
 ## Communication Protocols:
 The choice of communication protocol is crucial. Many chat applications use TCP (Transmission Control Protocol) for reliable, connection-oriented communication to ensure the ordered and error-free exchange of messages.
@@ -54,6 +64,21 @@ User authentication mechanisms are essential to ensure secure and authorized acc
 •	Socket Handling: The server manages incoming client connections using sockets, creating a separate thread or process for each connected client.
 •	User Management: Maintaining information about connected users, their status, and handling login/logout functionality.
 •	Message Routing: Implementing logic to route messages from one client to another, ensuring proper delivery.
+```
+import socket
+
+s = socket.socket()
+s.bind(('localhost', 6000))  
+s.listen(1)
+print("Server is listening...")
+
+conn, addr = s.accept()
+print("Connected by", addr)
+data = conn.recv(1024).decode()
+print("Client says:", data)
+conn.send(b"Hello from server!")
+conn.close()
+```
 
 ## Considerations in Development:
 1.	Concurrency and Multithreading:
@@ -73,6 +98,8 @@ Client-server chat applications are versatile tools that facilitate real-time co
 
 Client-server chat applications are foundational to real-time communication over networks. They incorporate principles of socket programming, communication protocols, and security mechanisms to provide a seamless user experience. Understanding the basics of client-server chat applications is essential for developers involved in networked application development, as they form the backbone of various collaborative communication systems. As technology evolves, chat applications continue to adapt, incorporating new features and technologies to enhance user interaction and connectivity.
 
+## Output:
+![WhatsApp Image 2025-09-08 at 14 07 45_d9ec42ac](https://github.com/user-attachments/assets/6fbb2f2a-8d27-4241-a463-1741966c3f00)
 
 ## Result:
 
